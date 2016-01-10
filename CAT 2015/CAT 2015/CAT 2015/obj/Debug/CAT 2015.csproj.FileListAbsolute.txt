@@ -1,0 +1,21 @@
+D:\Computing\CAT 2015\CAT 2015\CAT 2015\obj\Debug\CAT 2015.csprojResolveAssemblyReference.cache
+D:\Computing\CAT 2015\CAT 2015\CAT 2015\bin\CAT 2015.dll
+D:\Computing\CAT 2015\CAT 2015\CAT 2015\bin\CAT 2015.pdb
+D:\Computing\CAT 2015\CAT 2015\CAT 2015\obj\Debug\CAT 2015.dll
+D:\Computing\CAT 2015\CAT 2015\CAT 2015\obj\Debug\CAT 2015.pdb
+F:\Computing\CAT 2015\CAT 2015\CAT 2015\bin\CAT 2015.dll
+F:\Computing\CAT 2015\CAT 2015\CAT 2015\bin\CAT 2015.pdb
+F:\Computing\CAT 2015\CAT 2015\CAT 2015\bin\mscorlib.dll
+F:\Computing\CAT 2015\CAT 2015\CAT 2015\bin\normidna.nlp
+F:\Computing\CAT 2015\CAT 2015\CAT 2015\bin\normnfc.nlp
+F:\Computing\CAT 2015\CAT 2015\CAT 2015\bin\normnfd.nlp
+F:\Computing\CAT 2015\CAT 2015\CAT 2015\bin\normnfkc.nlp
+F:\Computing\CAT 2015\CAT 2015\CAT 2015\bin\normnfkd.nlp
+F:\Computing\CAT 2015\CAT 2015\CAT 2015\obj\Debug\CAT 2015.csprojResolveAssemblyReference.cache
+F:\Computing\CAT 2015\CAT 2015\CAT 2015\obj\Debug\CAT 2015.dll
+F:\Computing\CAT 2015\CAT 2015\CAT 2015\obj\Debug\CAT 2015.pdb
+B:\Documents\Computing Stuff\CAT 2015\CAT 2015\CAT 2015\bin\CAT 2015.dll
+B:\Documents\Computing Stuff\CAT 2015\CAT 2015\CAT 2015\bin\CAT 2015.pdb
+B:\Documents\Computing Stuff\CAT 2015\CAT 2015\CAT 2015\obj\Debug\CAT 2015.csprojResolveAssemblyReference.cache
+B:\Documents\Computing Stuff\CAT 2015\CAT 2015\CAT 2015\obj\Debug\CAT 2015.dll
+B:\Documents\Computing Stuff\CAT 2015\CAT 2015\CAT 2015\obj\Debug\CAT 2015.pdb

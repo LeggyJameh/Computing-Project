@@ -1,0 +1,113 @@
+﻿.base
+{
+    background-color:black;
+    color:lime;
+    text-align: center;
+    font-size: 14px;
+    font-family: 'OCR A';
+    font-weight: bold;
+}
+.base_w_border
+{
+    background-color:black;
+    color:lime;
+    text-align: center;
+    font-size: 14px;
+    font-family: 'OCR A';
+    font-weight: bold;
+    border:3px solid lime;
+}
+.table
+{
+    border:3px solid lime;
+    border-collapse: separate;
+    background-color:black;
+    padding: 4px;
+    color:lime;
+    text-align: center;
+    font-size: 12px;
+    font-family: 'OCR A';
+    font-weight: bold;
+    /* Removed Width and height, 14/12/15*/
+}
+/* Added 14/12/15 */
+.overviewPanel
+{
+    background-color:black;
+    color:lime;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'OCR A';
+    font-weight: bold;
+}
+.overviewPanelImportant
+{
+    background-color:black;
+    color:lime;
+    text-align: center;
+    font-size: 32px;
+    font-family: 'OCR A';
+    font-weight: bold;
+}
+.achievementElement
+{
+    background-color:black;
+    color:lime;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'OCR A';
+    font-weight: bold;
+}
+.textbox
+{
+    border:3px solid lime;
+    cursor:text;
+    background-color:black;
+    color:lime;
+    width: 196px;
+    height: 20px;
+    text-align: center;
+    font-size: 14px;
+    font-family: 'OCR A';
+    font-weight: bold;
+}
+.header
+{
+    border:3px solid lime;
+    background-color:black;
+    color:lime;
+    text-align: center;
+    font-size: 28px;
+    font-family: 'OCR A';
+    font-weight: bold;
+}
+.button
+{
+    border:3px solid lime;
+    cursor:pointer;
+    background-color:black;
+    color:lime;
+    width: 200px;
+    height: 40px;
+    text-align: center;
+    font-size: 14px;
+    font-family: 'OCR A';
+    font-weight: bold;
+}
+.button:hover
+{
+    border:2px solid lime;
+}
+.DropDown
+{
+    border:3px solid lime;
+    cursor:pointer;
+    background-color:black;
+    color:lime;
+    width: 200px;
+    height: 40px;
+    text-align: center;
+    font-size: 14px;
+    font-family: 'OCR A';
+    font-weight: bold;
+}

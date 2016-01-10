@@ -1,0 +1,32 @@
+User Administration
+	Create
+	Disable
+	Enable
+	Cleanup Users
+	Elevate & demote
+	Modify
+		Reset Pass
+		Set Nickname
+		Lock Nickname
+		Unlock Nickname
+		Reset Data
+Achievement Approval
+	Approve Request
+	Deny Request
+Distribute Achievements
+Data Management
+	Achievements
+		Add
+		Remove
+		Modify
+	Ranks
+		Add
+		Remove
+		Modify
+	Images
+		Add
+		Remove
+	Rewards
+		Add
+		Remove
+		Modify

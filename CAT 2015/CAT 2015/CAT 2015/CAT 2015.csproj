@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C57173EE-E94B-445E-B589-4BD76449EE3C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CAT_2015</RootNamespace>
+    <AssemblyName>CAT 2015</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Global.asax" />
+    <Content Include="Pages\Admin\AchievementApproval.aspx" />
+    <Content Include="Pages\Admin\DataManagement.aspx" />
+    <Content Include="Pages\Admin\DataManagement\AchievementManager.aspx" />
+    <Content Include="Pages\Admin\DataManagement\ImagesManager.aspx" />
+    <Content Include="Pages\Admin\DataManagement\RanksManager.aspx" />
+    <Content Include="Pages\Admin\DataManagement\RewardsManager.aspx" />
+    <Content Include="Pages\Admin\DistributeAchievements.aspx" />
+    <Content Include="Pages\Admin\Overview.aspx" />
+    <Content Include="Pages\Admin\UserAdministration.aspx" />
+    <Content Include="Pages\Admin\UserAdministration\ModifyUsers.aspx" />
+    <Content Include="Pages\Admin\UserAdministration\PermissionModifier.aspx" />
+    <Content Include="Pages\Admin\UserAdministration\UserCleanup.aspx" />
+    <Content Include="Pages\Admin\UserAdministration\UserCreation.aspx" />
+    <Content Include="Pages\Admin\UserAdministration\UserDisabler.aspx" />
+    <Content Include="Pages\Admin\UserSettings.aspx" />
+    <Content Include="Pages\Admin\WebsiteSettings.aspx" />
+    <Content Include="Pages\Login.aspx" />
+    <Content Include="Pages\MasterPage.Master" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\NavMenu.ascx" />
+    <Content Include="Pages\StyleSheet.css" />
+    <Content Include="Pages\User\Achievements.aspx" />
+    <Content Include="Pages\User\Controls\AchievementElement.ascx" />
+    <Content Include="Pages\User\Controls\LeaderboardFilterPanel.ascx" />
+    <Content Include="Pages\User\Controls\OverviewPanel.ascx" />
+    <Content Include="Pages\User\Leaderboard.aspx" />
+    <Content Include="Pages\User\Overview.aspx" />
+    <Content Include="Pages\User\Settings.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Code\Database.cs" />
+    <Compile Include="App_Code\Leaderboard.cs" />
+    <Compile Include="App_Code\Objects\Achievement.cs" />
+    <Compile Include="App_Code\Objects\Rank.cs" />
+    <Compile Include="App_Code\Objects\Reward.cs" />
+    <Compile Include="App_Code\Objects\User.cs" />
+    <Compile Include="App_Code\PageAccess.cs" />
+    <Compile Include="App_Code\PasswordHash.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\AchievementApproval.aspx.cs">
+      <DependentUpon>AchievementApproval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\AchievementApproval.aspx.designer.cs">
+      <DependentUpon>AchievementApproval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\DataManagement.aspx.cs">
+      <DependentUpon>DataManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\DataManagement.aspx.designer.cs">
+      <DependentUpon>DataManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\DataManagement\AchievementManager.aspx.cs">
+      <DependentUpon>AchievementManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\DataManagement\AchievementManager.aspx.designer.cs">
+      <DependentUpon>AchievementManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\DataManagement\ImagesManager.aspx.cs">
+      <DependentUpon>ImagesManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\DataManagement\ImagesManager.aspx.designer.cs">
+      <DependentUpon>ImagesManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\DataManagement\RanksManager.aspx.cs">
+      <DependentUpon>RanksManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\DataManagement\RanksManager.aspx.designer.cs">
+      <DependentUpon>RanksManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\DataManagement\RewardsManager.aspx.cs">
+      <DependentUpon>RewardsManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\DataManagement\RewardsManager.aspx.designer.cs">
+      <DependentUpon>RewardsManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\DistributeAchievements.aspx.cs">
+      <DependentUpon>DistributeAchievements.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\DistributeAchievements.aspx.designer.cs">
+      <DependentUpon>DistributeAchievements.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\Overview.aspx.cs">
+      <DependentUpon>Overview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\Overview.aspx.designer.cs">
+      <DependentUpon>Overview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\UserAdministration.aspx.cs">
+      <DependentUpon>UserAdministration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\UserAdministration.aspx.designer.cs">
+      <DependentUpon>UserAdministration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\UserAdministration\ModifyUsers.aspx.cs">
+      <DependentUpon>ModifyUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\UserAdministration\ModifyUsers.aspx.designer.cs">
+      <DependentUpon>ModifyUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\UserAdministration\PermissionModifier.aspx.cs">
+      <DependentUpon>PermissionModifier.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\UserAdministration\PermissionModifier.aspx.designer.cs">
+      <DependentUpon>PermissionModifier.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\UserAdministration\UserCleanup.aspx.cs">
+      <DependentUpon>UserCleanup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\UserAdministration\UserCleanup.aspx.designer.cs">
+      <DependentUpon>UserCleanup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\UserAdministration\UserCreation.aspx.cs">
+      <DependentUpon>UserCreation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\UserAdministration\UserCreation.aspx.designer.cs">
+      <DependentUpon>UserCreation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\UserAdministration\UserDisabler.aspx.cs">
+      <DependentUpon>UserDisabler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\UserAdministration\UserDisabler.aspx.designer.cs">
+      <DependentUpon>UserDisabler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\UserSettings.aspx.cs">
+      <DependentUpon>UserSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\UserSettings.aspx.designer.cs">
+      <DependentUpon>UserSettings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\WebsiteSettings.aspx.cs">
+      <DependentUpon>WebsiteSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\WebsiteSettings.aspx.designer.cs">
+      <DependentUpon>WebsiteSettings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MasterPage.Master.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\MasterPage.Master.designer.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NavMenu.ascx.cs">
+      <DependentUpon>NavMenu.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\NavMenu.ascx.designer.cs">
+      <DependentUpon>NavMenu.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\Achievements.aspx.cs">
+      <DependentUpon>Achievements.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\Achievements.aspx.designer.cs">
+      <DependentUpon>Achievements.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\Controls\AchievementElement.ascx.cs">
+      <DependentUpon>AchievementElement.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\Controls\AchievementElement.ascx.designer.cs">
+      <DependentUpon>AchievementElement.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\Controls\LeaderboardFilterPanel.ascx.cs">
+      <DependentUpon>LeaderboardFilterPanel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\Controls\LeaderboardFilterPanel.ascx.designer.cs">
+      <DependentUpon>LeaderboardFilterPanel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\Controls\OverviewPanel.ascx.cs">
+      <DependentUpon>OverviewPanel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\Controls\OverviewPanel.ascx.designer.cs">
+      <DependentUpon>OverviewPanel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\Leaderboard.aspx.cs">
+      <DependentUpon>Leaderboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\Leaderboard.aspx.designer.cs">
+      <DependentUpon>Leaderboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\Overview.aspx.cs">
+      <DependentUpon>Overview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\Overview.aspx.designer.cs">
+      <DependentUpon>Overview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\Settings.aspx.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\Settings.aspx.designer.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Database\" />
+    <Folder Include="Images\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>3672</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:3427/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,54 @@
+List<Achievement> sortedAchievements;
+List<User> sortedUsers;
+List<String> categories = getCategories();
+bool ascending = getOrder();
+string Filter = getFilter();
+
+switch (Filter)
+{
+	case “MostCommon”:
+		Dictionary<Achievement,Integer> achievementCounts = database.GetAchievementCounts(categories)
+
+		if (ascending)
+		{
+			achievementCounts = sortAchievementsAscending(achievementCounts)
+		}
+		else
+		{
+			achievementCounts = sortAchievementsDescending(achievementCounts)
+		}
+
+		foreach (Achievement x in achievementCounts.Keys)
+		{
+			sortedAchievements.Add(x)
+		}
+		break;
+
+	case “BestStudent”:
+		Dictionary<User,Integer> studentPointCounts = database.GetUserScoresForCategories(categories)
+
+		if (ascending)
+		{
+			studentPointCounts = sortStudentPointsAscending(studentPointCounts)
+		}
+		else
+		{
+			studentPointCounts = sortStudentPointsDescending(studentPointCounts)
+		}
+
+		foreach (User x in studentPointCounts.Keys)
+		{
+			sortedUsers.Add(x)
+		}
+		break;
+}
+
+if (sortedAchievements != null)
+{
+	addAchievementsToGrid(sortedAchievements)
+}
+else if (sortedUsers != null)
+{
+	addUsersToGrid(sortedUsers)
+}
+

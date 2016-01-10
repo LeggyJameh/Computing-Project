@@ -1,0 +1,34 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.Master.cs" Inherits="CAT_2015.Pages.MasterPage" %>
+<%@ Register TagPrefix="Controls" TagName="NavMenu" Src="~/Pages/NavMenu.ascx" %>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="StyleSheet.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="base">
+    <form id="form1" runat="server">
+        <div>
+            <asp:Table ID="table1" runat="server" Width="100%" CellPadding="0" CellSpacing="10">
+                <asp:TableRow>
+                    <asp:TableCell Width="100%" Height="60px" CssClass="header"> <!-- Header -->
+                        Computing Achievement Tracker
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow>
+                    <asp:TableCell Width="85%" Height="100%" VerticalAlign="Top" CssClass="base"> <!-- Content -->
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolderContent" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </asp:TableCell>
+                    <asp:TableCell Width="15%" VerticalAlign="Top" Height="100%"> <!-- Navigation Menu -->
+                        <Controls:NavMenu ID="NavMenu" runat="server" />
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
+        </div>
+    </form>
+</body>
+</html>
