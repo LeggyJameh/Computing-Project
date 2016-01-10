@@ -31,3 +31,8 @@ C:\Users\Jamie\Documents\Computing\CAT 2015\CAT 2015\CAT 2015\bin\normnfkd.nlp
 C:\Users\Jamie\Documents\Computing\CAT 2015\CAT 2015\CAT 2015\obj\Debug\CAT 2015.csprojResolveAssemblyReference.cache
 C:\Users\Jamie\Documents\Computing\CAT 2015\CAT 2015\CAT 2015\obj\Debug\CAT 2015.dll
 C:\Users\Jamie\Documents\Computing\CAT 2015\CAT 2015\CAT 2015\obj\Debug\CAT 2015.pdb
+B:\Documents\Computing Stuff\Computing Project\CAT 2015\CAT 2015\CAT 2015\bin\CAT 2015.dll
+B:\Documents\Computing Stuff\Computing Project\CAT 2015\CAT 2015\CAT 2015\bin\CAT 2015.pdb
+B:\Documents\Computing Stuff\Computing Project\CAT 2015\CAT 2015\CAT 2015\obj\Debug\CAT 2015.csprojResolveAssemblyReference.cache
+B:\Documents\Computing Stuff\Computing Project\CAT 2015\CAT 2015\CAT 2015\obj\Debug\CAT 2015.dll
+B:\Documents\Computing Stuff\Computing Project\CAT 2015\CAT 2015\CAT 2015\obj\Debug\CAT 2015.pdb
