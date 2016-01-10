@@ -23,3 +23,28 @@
 2015-12-17 19:25:29 11260 [Note] Event Scheduler: Loaded 0 events
 2015-12-17 19:25:29 11260 [Note] G:\Computing\CAT 2015\CAT 2015\CAT 2015\Database\bin\mysqld.exe: ready for connections.
 Version: '5.6.19'  socket: ''  port: 3306  MySQL Community Server (GPL)
+2016-01-06 19:45:05 1548 [Note] Plugin 'FEDERATED' is disabled.
+2016-01-06 19:45:05 1548 [Note] InnoDB: Using atomics to ref count buffer pool pages
+2016-01-06 19:45:05 1548 [Note] InnoDB: The InnoDB memory heap is disabled
+2016-01-06 19:45:05 1548 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2016-01-06 19:45:05 1548 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2016-01-06 19:45:05 1548 [Note] InnoDB: Not using CPU crc32 instructions
+2016-01-06 19:45:05 1548 [Note] InnoDB: Initializing buffer pool, size = 128.0M
+2016-01-06 19:45:05 1548 [Note] InnoDB: Completed initialization of buffer pool
+2016-01-06 19:45:05 1548 [Note] InnoDB: Highest supported file format is Barracuda.
+2016-01-06 19:45:05 1548 [Note] InnoDB: The log sequence numbers 14495350 and 14495350 in ibdata files do not match the log sequence number 14928227 in the ib_logfiles!
+2016-01-06 19:45:05 1548 [Note] InnoDB: Database was not shutdown normally!
+2016-01-06 19:45:05 1548 [Note] InnoDB: Starting crash recovery.
+2016-01-06 19:45:05 1548 [Note] InnoDB: Reading tablespace information from the .ibd files...
+2016-01-06 19:45:05 1548 [Note] InnoDB: Restoring possible half-written data pages 
+2016-01-06 19:45:05 1548 [Note] InnoDB: from the doublewrite buffer...
+2016-01-06 19:45:07 1548 [Note] InnoDB: 128 rollback segment(s) are active.
+2016-01-06 19:45:08 1548 [Note] InnoDB: Waiting for purge to start
+2016-01-06 19:45:08 1548 [Note] InnoDB: 5.6.19 started; log sequence number 14928227
+2016-01-06 19:45:08 1548 [Note] Server hostname (bind-address): '*'; port: 3306
+2016-01-06 19:45:08 1548 [Note] IPv6 is available.
+2016-01-06 19:45:08 1548 [Note]   - '::' resolves to '::';
+2016-01-06 19:45:08 1548 [Note] Server socket created on IP: '::'.
+2016-01-06 19:45:09 1548 [Note] Event Scheduler: Loaded 0 events
+2016-01-06 19:45:09 1548 [Note] G:\Computing\CAT 2015\CAT 2015\CAT 2015\Database\bin\mysqld.exe: ready for connections.
+Version: '5.6.19'  socket: ''  port: 3306  MySQL Community Server (GPL)

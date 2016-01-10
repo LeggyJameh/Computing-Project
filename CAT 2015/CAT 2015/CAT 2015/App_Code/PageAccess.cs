@@ -10,7 +10,7 @@ namespace CAT_2015.AppCode
         // Pages that are displayed on the navigation menu when a user is logged in
         public static Dictionary<string, string> UserPages = new Dictionary<string, string>()
         {
-            {"Home", "~/Pages/User/Overview.aspx"},
+            {"Home", "~/Pages/Default.aspx"},
             {"Overview","~/Pages/User/Overview.aspx"},
             {"Leaderboard","~/Pages/User/Leaderboard.aspx"},
             {"Achievements","~/Pages/User/Achievements.aspx"},
@@ -44,7 +44,7 @@ namespace CAT_2015.AppCode
         // Pages that are available without the need to log in
         public static Dictionary<string, string> DefaultPages = new Dictionary<string, string>()
         {
-            {"Home", "~/Pages/Home.aspx"},
+            {"Home", "~/Pages/Default.aspx"},
             {"Login", "~/Pages/Login.aspx"}
         };
     }

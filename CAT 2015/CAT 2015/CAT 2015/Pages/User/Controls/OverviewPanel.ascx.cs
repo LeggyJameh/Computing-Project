@@ -26,33 +26,44 @@ namespace CAT_2015.Pages.User.Controls
                 labelNickname.Text = "Nickname: " + currentUser.NickName;
                 labelActualname.Text = "Real Name: " + currentUser.RealName;
                 labelTotalPoints.Text = currentUser.Score.ToString() + " Points";
+                // If the nickname is locked..
+                if (currentUser.NickLocked)
+                {
+                    // Make it red and display (Locked)
+                    labelNickname.CssClass = "nickLocked";
+                    labelNickname.Text += " (Locked)";
+                }
                 if (currentRank != null) // If a current rank was found..
                 {
                     // Get the next rank
                     nextRank = AppCode.Database.GetNextRankUp(currentRank);
                     // And fill out information relating to the current rank
                     labelRankName.Text = currentRank.Name;
-                    labelRankNumber.Text = "Rank " + AppCode.Database.GetRankRanking(currentRank).ToString();
+                    labelRankNumber.Text = "Level " +
+                    AppCode.Database.GetRankRanking(currentRank).ToString();
                     imageRank.ImageUrl = currentRank.Image;
                     imageRank.ImageAlign = ImageAlign.Middle;
-                    //imageRank.ImageUrl = currentRank.Image;
                     if (nextRank != null) // If the user's next rank was found..
                     {
+                        int percentage =
+                        Convert.ToInt16(((double)(currentUser.Score - currentRank.MinScore) /
+                        (double)(nextRank.MinScore - currentRank.MinScore)) * 100);
+                        progressBar.setPercent(percentage);
                         // Fill the labels with relavent information
-                        labelProgressPercentage.Text =
-                        currentUser.Score.ToString() +
+                        labelProgressPercentage.Text = "Next Level: " +
+                        (currentUser.Score - currentRank.MinScore).ToString() +
                         " / " +
-                        nextRank.MinScore.ToString() +
+                        (nextRank.MinScore - currentRank.MinScore).ToString() +
                         " ( " +
-                        Convert.ToInt16(((double)currentUser.Score / (double)nextRank.MinScore) * 100).ToString() +
+                        percentage.ToString() +
                         "% ) ";
                     }
                     else
                     {
                         //if (AppCode.Database.IsMaxRank(currentRank))
                         //{
-                            labelProgressPercentage.Text = "Max Rank Achieved!";
-                       // }
+                        labelProgressPercentage.Text = "Max Level Achieved!";
+                        // }
                     }
                 }
             }

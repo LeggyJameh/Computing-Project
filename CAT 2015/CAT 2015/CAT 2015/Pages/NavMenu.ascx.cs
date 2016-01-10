@@ -62,7 +62,7 @@ namespace CAT_2015.Pages
                 NavTable.Rows.Add(row);
             }
         }
-
+        
         /// <summary>
         /// Send the client to the correct page when the button is pressed
         /// </summary>

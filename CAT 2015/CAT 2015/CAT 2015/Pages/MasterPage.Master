@@ -17,6 +17,9 @@
                     <asp:TableCell Width="100%" Height="60px" CssClass="header"> <!-- Header -->
                         Computing Achievement Tracker
                     </asp:TableCell>
+                    <asp:TableCell CssClass="base">
+                        <asp:Label ID="labelUser" CssClass="base" runat="server"></asp:Label>
+                    </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
                     <asp:TableCell Width="85%" Height="100%" VerticalAlign="Top" CssClass="base"> <!-- Content -->
@@ -25,6 +28,11 @@
                     </asp:TableCell>
                     <asp:TableCell Width="15%" VerticalAlign="Top" Height="100%"> <!-- Navigation Menu -->
                         <Controls:NavMenu ID="NavMenu" runat="server" />
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow CssClass="footer">
+                    <asp:TableCell>
+                        Created by Jamie Mills for Craig Sargent 2015/16
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>

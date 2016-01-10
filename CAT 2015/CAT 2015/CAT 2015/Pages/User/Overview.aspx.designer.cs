@@ -22,6 +22,15 @@ namespace CAT_2015.Pages.User {
         protected global::System.Web.UI.WebControls.Table overviewTable;
         
         /// <summary>
+        /// cellOverviewPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell cellOverviewPanel;
+        
+        /// <summary>
         /// overviewPanel control.
         /// </summary>
         /// <remarks>
@@ -29,5 +38,50 @@ namespace CAT_2015.Pages.User {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::CAT_2015.Pages.User.Controls.OverviewPanel overviewPanel;
+        
+        /// <summary>
+        /// cellAchievements control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell cellAchievements;
+        
+        /// <summary>
+        /// panelAchievements control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panelAchievements;
+        
+        /// <summary>
+        /// tableAchievements control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table tableAchievements;
+        
+        /// <summary>
+        /// cellRecentAchievements control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableCell cellRecentAchievements;
+        
+        /// <summary>
+        /// tableRecentAchievements control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table tableRecentAchievements;
     }
 }

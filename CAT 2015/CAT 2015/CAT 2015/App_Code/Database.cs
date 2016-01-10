@@ -190,17 +190,17 @@ namespace CAT_2015.AppCode
 
         /// <summary>
         /// Returns a list of achievements that the user has obtained based on the
-        /// requested parameter. 01/12/15 // REMOVED AWARDED PARAMETER AS PART OF OVERVIEW
+        /// requested parameter. 01/12/15
         /// </summary>
-        public static List<Achievement> GetUserAchievements(User user, bool requested)
+        public static List<Achievement> GetUserAchievements(User user, bool requested, bool awarded)
         {
-            return GetAchievementsFromIDs(GetUserAchievementIDs(user, requested));
+            return GetAchievementsFromIDs(GetUserAchievementIDs(user, requested, awarded));
         }
 
         /// <summary>
-        /// Returns a list of ids of the achievements that the user has obtained. 01/12/15 // REMOVED AWARDED PARAMETER AS PART OF OVERVIEW
+        /// Returns a list of ids of the achievements that the user has obtained. 01/12/15
         /// </summary>
-        public static List<int> GetUserAchievementIDs(User user, bool requested)
+        public static List<int> GetUserAchievementIDs(User user, bool requested, bool awarded)
         {
             // List of achievement ID's from the achievementData table
             List<int> achievementIDs = new List<int>();
@@ -208,8 +208,8 @@ namespace CAT_2015.AppCode
 
             /* Get all achievement ID's from the achievementData table for this user
              * that have pertain to the requested parameter. */
-            query = "SELECT `AchievementID, Awarded` FROM '" + achievementDataTable + "' WHERE `UserID`='"
-            + user.ID + "' AND `Requested`='" + Convert.ToInt16(requested) + "'";
+            query = "SELECT `AchievementID` FROM `" + achievementDataTable + "` WHERE `UserID`='"
+            + user.ID + "' AND `Requested`='" + Convert.ToInt16(requested) + "' AND `Awarded`='" + Convert.ToInt16(awarded) + "'";
 
             if (connectionOpen())
             {
@@ -543,6 +543,7 @@ namespace CAT_2015.AppCode
                     error = ex.Message;
                 }
             }
+            // Returns the constructed rank, or returns null if something bad happened
             return rank;
         }
 
@@ -551,8 +552,9 @@ namespace CAT_2015.AppCode
         /// </summary>
         public static Rank GetNextRankUp(Rank currentRank)
         {
-            // Find the ranks with a minimum requirement score above that of the current rank
-            string query = "SELECT * FROM `ranks` WHERE `MinScore`>'" + currentRank.MinScore + "'";
+            // Find the first rank with a higher MinScore than the current rank
+            string query = "SELECT * FROM `ranks` WHERE `MinScore`>'" + currentRank.MinScore +
+            "' ORDER BY `MinScore` ASC LIMIT 1";
             // Creates a database command from the query and existing connection
             OdbcCommand cmd = new OdbcCommand(query, connection);
             Rank rank = null;
@@ -563,40 +565,16 @@ namespace CAT_2015.AppCode
                 {
                     // Execute the command and open a reader
                     OdbcDataReader dataReader = cmd.ExecuteReader();
-                    // List to store the ranks returned by the reader for comparison
-                    List<Rank> ranksList = new List<Rank>();
                     // If the data reader returns anything
                     if (dataReader.HasRows)
                     {
-                        // While there are records to read..
-                        while (dataReader.Read())
-                        {
-                            // Read the record as a rank and add it to the rank list
-                            ranksList.Add(readRank(dataReader));
-                        }
+                        // Read the first record
+                        dataReader.Read();
+                        // Read the record as a rank and add it to the rank list
+                        rank = readRank(dataReader);
                     }
                     // Close the data reader
                     dataReader.Close();
-
-                    // If any ranks were returned
-                    if (ranksList.Count > 0)
-                    {
-                        // Set the rank to the first record
-                        rank = ranksList[0];
-                        // For each of the ranks in the list..
-                        foreach (Rank x in ranksList)
-                        {
-                            // If this rank has a lower minimum score than the current lowest..
-                            if (x.MinScore < rank.MinScore)
-                            {
-                                // Set the lowest to be the current rank
-                                rank = x;
-                            }
-                        }
-                    }
-                    // Set the ranks list to null now that we're finished
-                    // with it to be garbage collected
-                    ranksList = null;
                 }
                 catch (OdbcException ex)
                 {
@@ -642,7 +620,74 @@ namespace CAT_2015.AppCode
                     error = ex.Message;
                 }
             }
-            return ranking + 1; // Return the number of ranks with lower minScore + 1 for ranking position
+            // Return the number of ranks with lower minScore + 1 for ranking position
+            return ranking + 1;
+        }
+
+        /// <summary>
+        /// Returns the date that the achievement was obtained. Retuns today if achievement was
+        /// never obtained or the query failed. CREATED 06/01/16
+        /// </summary>
+        public static DateTime GetUserAchievementDateAchieved(CAT_2015.Achievement achievement,
+        CAT_2015.User user)
+        {
+            string query = "SELECT `DateUpdated` FROM `achievementdata` WHERE `AchievementID`='" + achievement.ID +
+            "' AND `UserID`='" + user.ID + "'";
+            DateTime dateAchieved = DateTime.Today;
+            OdbcCommand cmd = new OdbcCommand(query, connection);
+
+            if (connectionOpen())
+            {
+                try
+                {
+                    OdbcDataReader dataReader = cmd.ExecuteReader();
+                    if (dataReader.HasRows)
+                    {
+                        dataReader.Read();
+                        dateAchieved = dataReader.GetDateTime(0);
+                        dataReader.Close();
+                    }
+                }
+                catch (OdbcException ex)
+                {
+                    error = ex.Message;
+                }
+            }
+            return dateAchieved;
+        }
+
+        /// <summary>
+        /// Gets the set number of most recent achievement's IDs for adding to the recent
+        /// achievement table ADDED 06/01/16
+        /// </summary>
+        public static List<int> GetRecentAchievementIDsForUser(User currentUser)
+        {
+            List<int> achievementIDs = new List<int>();
+            string query = "SELECT `AchievementID` FROM `achievementData` WHERE `UserID`='" +
+            currentUser.ID + "' AND `Awarded`='1' ORDER BY `DateUpdated` DESC LIMIT " +
+            ConfigurationManager.AppSettings["NumOfRecentAchievements"];
+            OdbcCommand cmd = new OdbcCommand(query, connection);
+            
+            if (connectionOpen())
+            {
+                try
+                {
+                    OdbcDataReader dataReader = cmd.ExecuteReader();
+                    if (dataReader.HasRows)
+                    {
+                        while(dataReader.Read())
+                        {
+                            achievementIDs.Add(dataReader.GetInt16(0));
+                        }
+                    }
+                    dataReader.Close();
+                }
+                catch (OdbcException ex)
+                {
+                    error = ex.Message;
+                }
+            }
+            return achievementIDs;
         }
 
         /// <summary>
