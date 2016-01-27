@@ -7,14 +7,14 @@
         <asp:TableCell CssClass="table" Width="200px"><asp:Label ID="labelActualname" runat="server" CssClass="overviewPanel"></asp:Label></asp:TableCell>
     </asp:TableRow>
 
-    <asp:TableRow CssClass="table">
+    <asp:TableRow CssClass="table" Height="270px">
         <asp:TableCell RowSpan="2" CssClass="table" Width="200px"><asp:Image ID="imageRank" runat="server" /></asp:TableCell>
         <asp:TableCell CssClass="table" Width="250px"><asp:Label ID="labelRankName" runat="server" CssClass="overviewPanelImportant"></asp:Label></asp:TableCell>
         <asp:TableCell RowSpan="2" CssClass="table" Width="200px"><asp:Label ID="labelTotalPoints" runat="server" CssClass="overviewPanelImportant"></asp:Label></asp:TableCell>
     </asp:TableRow>
 
     <asp:TableRow CssClass="table">
-        <asp:TableCell CssClass="table" Width="250px"><asp:Label ID="labelRankNumber" runat="server" CssClass="overviewPanelImportant"></asp:Label></asp:TableCell>
+        <asp:TableCell CssClass="table" Width="250px" Height="30px"><asp:Label ID="labelRankNumber" runat="server" CssClass="overviewPanelImportant"></asp:Label></asp:TableCell>
     </asp:TableRow>
 
     <asp:TableRow CssClass="table" Width="100%">

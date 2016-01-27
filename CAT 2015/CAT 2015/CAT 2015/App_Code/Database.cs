@@ -17,11 +17,12 @@ namespace CAT_2015.AppCode
         private static OdbcConnection connection = new OdbcConnection(ConfigurationManager.ConnectionStrings["MySQLConnStr"].ConnectionString);
 
         // Bunch of constants that can be used if there is a change in the database's table names.
-        private const string userTable = "users";
-        private const string achievementTable = "achievements";
-        private const string achievementDataTable = "achievementdata";
-        private const string rewardsTable = "rewards";
-        private const string rewardsDataTable = "rewardstable";
+        private static string userTable = ConfigurationManager.AppSettings["UsersTableName"];
+        private static string achievementTable = ConfigurationManager.AppSettings["AchievementsTableName"];
+        private static string achievementDataTable = ConfigurationManager.AppSettings["AchievementDataTableName"];
+        private static string rewardsTable = ConfigurationManager.AppSettings["RewardsTableName"];
+        private static string rewardsDataTable = ConfigurationManager.AppSettings["RewardsDataTableName"];
+        private static string ranksTable = ConfigurationManager.AppSettings["RanksTableName"];
 
         /// <summary>
         /// Variable that when set, displays output to console window. Alerts the admin of issues.
@@ -425,7 +426,7 @@ namespace CAT_2015.AppCode
         public static bool AuthenticateUser(string username, string password, string sessionID)
         {
             // Pull the password from the database for the specified user
-            string query = "SELECT `sahp`, `disabled` FROM `users` WHERE `Username`='" + username + "'";
+            string query = "SELECT `sahp`, `disabled` FROM `" + userTable + "` WHERE `Username`='" + username + "'";
             string sahp = "";
             bool disabled = true;
             // Creates a database command from the query and existing connection
@@ -462,7 +463,7 @@ namespace CAT_2015.AppCode
                     {
                         // If the password is correct, sets the SessionID in the database to
                         // the current client's SessionID and returns that authentication was sucessful
-                        ExecuteNonQuery("UPDATE `Users` SET `SessionID`='" + sessionID +
+                        ExecuteNonQuery("UPDATE `" + userTable + "` SET `SessionID`='" + sessionID +
                         "' WHERE `Username`='" + username + "';");
                         return true;
                     }
@@ -478,7 +479,7 @@ namespace CAT_2015.AppCode
         public static User GetLoggedInUser(string sessionID)
         {
             // Find a user with the current client's sessionID
-            string query = "SELECT * FROM `Users` WHERE `SessionID`='" + sessionID + "'";
+            string query = "SELECT * FROM `" + userTable + "` WHERE `SessionID`='" + sessionID + "'";
             User user = null;
             // Creates a database command from the query and existing connection
             OdbcCommand cmd = new OdbcCommand(query, connection);
@@ -515,7 +516,7 @@ namespace CAT_2015.AppCode
         public static Rank GetRankFromID(int id)
         {
             // Find the rank associated with the provided id
-            string query = "SELECT * FROM `ranks` WHERE `ID`='" + id + "'";
+            string query = "SELECT * FROM `" + ranksTable + "` WHERE `ID`='" + id + "'";
             // Creates a database command from the query and existing connection
             OdbcCommand cmd = new OdbcCommand(query, connection);
             Rank rank = null;
@@ -553,7 +554,7 @@ namespace CAT_2015.AppCode
         public static Rank GetNextRankUp(Rank currentRank)
         {
             // Find the first rank with a higher MinScore than the current rank
-            string query = "SELECT * FROM `ranks` WHERE `MinScore`>'" + currentRank.MinScore +
+            string query = "SELECT * FROM `" + ranksTable + "` WHERE `MinScore`>'" + currentRank.MinScore +
             "' ORDER BY `MinScore` ASC LIMIT 1";
             // Creates a database command from the query and existing connection
             OdbcCommand cmd = new OdbcCommand(query, connection);
@@ -592,7 +593,7 @@ namespace CAT_2015.AppCode
         public static int GetRankRanking(Rank rank)
         {
             // Get the number of ranks where the MinScore is below the current rank's MinScore
-            string query = "SELECT COUNT(0) FROM `Ranks` WHERE `MinScore`<'" + rank.MinScore + "'";
+            string query = "SELECT COUNT(0) FROM `" + ranksTable + "` WHERE `MinScore`<'" + rank.MinScore + "'";
             int ranking = 0;
             // Create a database command from the query and existing connection
             OdbcCommand cmd = new OdbcCommand(query, connection);
@@ -631,28 +632,41 @@ namespace CAT_2015.AppCode
         public static DateTime GetUserAchievementDateAchieved(CAT_2015.Achievement achievement,
         CAT_2015.User user)
         {
-            string query = "SELECT `DateUpdated` FROM `achievementdata` WHERE `AchievementID`='" + achievement.ID +
+            // Get the date updated for this achievement from the achievementdata table.
+            string query = "SELECT `DateUpdated` FROM `" + achievementDataTable + "` WHERE `AchievementID`='" + achievement.ID +
             "' AND `UserID`='" + user.ID + "'";
+            // Set the dateAchieved to something other than null.
             DateTime dateAchieved = DateTime.Today;
+            // Create a command from the query and existing connection.
             OdbcCommand cmd = new OdbcCommand(query, connection);
 
+            // If the connection is already open...
             if (connectionOpen())
             {
                 try
                 {
+                    // Execute the command and open a reader.
                     OdbcDataReader dataReader = cmd.ExecuteReader();
+                    // If any rows are returned...
                     if (dataReader.HasRows)
                     {
+                        // Load the first record.
                         dataReader.Read();
+                        // Format the return as a DateTime.
                         dateAchieved = dataReader.GetDateTime(0);
+                        // Close the datareader.
                         dataReader.Close();
                     }
                 }
+                
                 catch (OdbcException ex)
                 {
+                    // Displays an error if something bad occurs while executing the command
                     error = ex.Message;
                 }
             }
+            // Return the dateAchieved. Will return today if something bad occurs or the awarded
+            // achievement could not be found.
             return dateAchieved;
         }
 
@@ -662,32 +676,85 @@ namespace CAT_2015.AppCode
         /// </summary>
         public static List<int> GetRecentAchievementIDsForUser(User currentUser)
         {
+            // Create a list of integers to store the achievement IDs
             List<int> achievementIDs = new List<int>();
-            string query = "SELECT `AchievementID` FROM `achievementData` WHERE `UserID`='" +
+            // Get the achievementID's of the most recently obtained achievments for this user
+            string query = "SELECT `AchievementID` FROM `" + achievementDataTable + "` WHERE `UserID`='" +
             currentUser.ID + "' AND `Awarded`='1' ORDER BY `DateUpdated` DESC LIMIT " +
             ConfigurationManager.AppSettings["NumOfRecentAchievements"];
+            // Create a command from the query and existing connection
             OdbcCommand cmd = new OdbcCommand(query, connection);
             
+            // If the connection is open...
             if (connectionOpen())
             {
                 try
                 {
+                    // Execute the command and open a data reader
                     OdbcDataReader dataReader = cmd.ExecuteReader();
+                    // If anything was returned...
                     if (dataReader.HasRows)
                     {
-                        while(dataReader.Read())
+                        while(dataReader.Read()) // While there are still more values to read...
                         {
+                            // Read the output as an integer and add it to the list.
                             achievementIDs.Add(dataReader.GetInt16(0));
                         }
                     }
+                    // Close the datareader once all values have been processed.
                     dataReader.Close();
                 }
                 catch (OdbcException ex)
                 {
+                    // Displays an error if something bad occurs while executing the command
                     error = ex.Message;
                 }
             }
+            // Return the list of achievementID's. If something bad occurs or the user has no achievements,
+            // returns an empty list.
             return achievementIDs;
+        }
+
+        /// <summary>
+        /// Returns a list of all the categories that the achievements pertain to.
+        /// </summary>
+        public static List<string> GetCategories()
+        {
+            // Return all unique values in the category column
+            string query = "SELECT DISTINCT `category` FROM `" + achievementTable + "`";
+            // Create a command from the query and existing connection
+            OdbcCommand cmd = new OdbcCommand(query, connection);
+            // Initialise the categories list
+            List<string> categories = new List<string>();
+
+            // If the connection is currently open...
+            if (connectionOpen())
+            {
+                try
+                {
+                    // Execute the command and open a reader
+                    OdbcDataReader dataReader = cmd.ExecuteReader();
+
+                    // If the reader returns anything...
+                    if (dataReader.HasRows)
+                    {
+                        // While there are still entries to read...
+                        while (dataReader.Read())
+                        {
+                            // Read it as a string and add it to the categories list
+                            categories.Add(dataReader.GetString(0));
+                        }
+                    }
+                    // Close the data reader
+                    dataReader.Close();
+                }
+                catch (OdbcException ex)
+                {
+                    // Display an error if something goes wrong
+                    error = ex.Message;
+                }
+            }
+            return categories;
         }
 
         /// <summary>
@@ -696,8 +763,73 @@ namespace CAT_2015.AppCode
         public static bool RemoveSession(string SessionID)
         {
             // Set the sessionID to be nothing where the sessionID is the current sessionID
-            string query = "UPDATE `Users` SET `SessionID`='' WHERE `SessionID`='" + SessionID + "';";
+            string query = "UPDATE `" + userTable + "` SET `SessionID`='' WHERE `SessionID`='" + SessionID + "';";
             return ExecuteNonQuery(query);
+        }
+
+        /// <summary>
+        /// Used by the achievement constructor to add the achievement to the database.
+        /// Returns the finished achievement which the original gets replaced with.
+        /// </summary>
+        public static Achievement AddAchievement(string name, string description, string category, string image, int value, bool hidden)
+        {
+            string query = "INSERT INTO `" + achievementTable + "` (`Name`, `Description`, `Category`, `Image`, `Value`, `Hidden`) VALUES ('" + name + "', '" + description + "', '" + category + "', '" + image + "', '" + value + "', '" + hidden + "');";
+            OdbcCommand cmd = new OdbcCommand(query, connection);
+
+            ExecuteNonQuery(query);
+            return GetAchievementByID(GetLastInsertID());
+        }
+
+        public static Achievement GetAchievementByID(int id)
+        {
+            string query = "SELECT * FROM `" + achievementTable + "` WHERE `id`='" + id + "' LIMIT 1";
+            OdbcCommand cmd = new OdbcCommand(query, connection);
+            Achievement achievement = null;
+            
+            if (connectionOpen())
+            {
+                try
+                {
+                    OdbcDataReader dataReader = cmd.ExecuteReader();
+                    if (dataReader.HasRows)
+                    {
+                        dataReader.Read();
+                        achievement = readAchievement(dataReader);
+                    }
+                    dataReader.Close();
+                }
+                catch (OdbcException ex)
+                {
+                    error = ex.Message;
+                }
+            }
+            return achievement;
+        }
+
+        public static int GetLastInsertID()
+        {
+            string query = "SELECT last_insert_id()";
+            OdbcCommand cmd = new OdbcCommand(query, connection);
+            int id = -1;
+
+            if (connectionOpen())
+            {
+                try
+                {
+                    OdbcDataReader dataReader = cmd.ExecuteReader();
+                    if (dataReader.HasRows)
+                    {
+                        dataReader.Read();
+                        id = dataReader.GetInt16(0);
+                    }
+                    dataReader.Close();
+                }
+                catch (OdbcException ex)
+                {
+                    error = ex.Message;
+                }
+            }
+            return id;
         }
 
         /// <summary>

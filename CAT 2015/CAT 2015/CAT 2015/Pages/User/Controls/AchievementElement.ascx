@@ -7,7 +7,7 @@
         <asp:TableCell ID="cellName" CssClass="achievementElement" runat="server" Width="400">
             <asp:Label ID="labelName" CssClass="achievementElement" runat="server" Width="100%"></asp:Label>
         </asp:TableCell>
-        <asp:TableCell ID="cellPointsValue" RowSpan="3" CssClass="achievementElement" runat="server" Width="200">
+        <asp:TableCell ID="cellPointsValue" RowSpan="2" CssClass="achievementElement" runat="server" Width="200">
             <asp:Label ID="labelPointsValue" CssClass="achievementElement" runat="server" Width="100%"></asp:Label>
         </asp:TableCell>
     </asp:TableRow>
@@ -19,6 +19,8 @@
     <asp:TableRow runat="server">
         <asp:TableCell ID="cellDateAchieved" CssClass="achievementElement" runat="server" Width="400">
             <asp:Label ID="labelDateAchieved" CssClass="achievementElement" runat="server" Width="100%"></asp:Label>
+        </asp:TableCell>
+        <asp:TableCell ID="cellButtonRequest" runat="server" Width="400">
         </asp:TableCell>
     </asp:TableRow>
 </asp:Table>

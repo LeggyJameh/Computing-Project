@@ -93,8 +93,15 @@ namespace CAT_2015
         public Achievement(string name, string description, string category,
         string image, int value, bool hidden)
         {
-            // TODO: Database.AddAchievement(name, description, category, image,
-            // value, hidden);
+            Achievement currentAchievement = AppCode.Database.AddAchievement(name, description, category, image, value, hidden);
+            this.category = currentAchievement.category;
+            this.dateAdded = currentAchievement.dateAdded;
+            this.description = currentAchievement.description;
+            this.name = currentAchievement.name;
+            this.value = currentAchievement.value;
+            this.image = currentAchievement.image;
+            this.id = currentAchievement.id;
+            this.hidden = currentAchievement.hidden;
         }
 
         /// <summary>
@@ -112,6 +119,7 @@ namespace CAT_2015
             this.value = value;
             this.dateAdded = dateAdded;
             this.hidden = hidden;
+            AppCode.Cache.AddAchievement(this);
         }
     }
 }

@@ -1,41 +1,46 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.Master.cs" Inherits="CAT_2015.Pages.MasterPage" %>
+
 <%@ Register TagPrefix="Controls" TagName="NavMenu" Src="~/Pages/NavMenu.ascx" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title></title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
     <link href="StyleSheet.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="base">
     <form id="form1" runat="server">
         <div>
-            <asp:Table ID="table1" runat="server" Width="100%" CellPadding="0" CellSpacing="10">
-                <asp:TableRow>
-                    <asp:TableCell Width="100%" Height="60px" CssClass="header"> <!-- Header -->
+            <table>
+                <tr>
+                    <!-- Header -->
+                    <td class="header">
                         Computing Achievement Tracker
-                    </asp:TableCell>
-                    <asp:TableCell CssClass="base">
-                        <asp:Label ID="labelUser" CssClass="base" runat="server"></asp:Label>
-                    </asp:TableCell>
-                </asp:TableRow>
-                <asp:TableRow>
-                    <asp:TableCell Width="85%" Height="100%" VerticalAlign="Top" CssClass="base"> <!-- Content -->
-                        <asp:ContentPlaceHolder ID="ContentPlaceHolderContent" runat="server">
-                        </asp:ContentPlaceHolder>
-                    </asp:TableCell>
-                    <asp:TableCell Width="15%" VerticalAlign="Top" Height="100%"> <!-- Navigation Menu -->
+                    </td>
+                </tr>
+                <tr class="contentWrapper" style="top:0px">
+                    <!-- Content -->
+                    <td class="contentWrapper" rowspan="2">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolderContent" runat="server"></asp:ContentPlaceHolder>
+                    </td>
+                    <td class="navMenuWrapper">
                         <Controls:NavMenu ID="NavMenu" runat="server" />
-                    </asp:TableCell>
-                </asp:TableRow>
-                <asp:TableRow CssClass="footer">
-                    <asp:TableCell>
-                        Created by Jamie Mills for Craig Sargent 2015/16
-                    </asp:TableCell>
-                </asp:TableRow>
-            </asp:Table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="labelUser" runat="server" CssClass="userLabel"></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <!-- Footer -->
+                    <td>
+                        <div class="footer">
+                            Created by Jamie Mills for Craig Sargent 2015/16
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </div>
     </form>
 </body>

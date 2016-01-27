@@ -27,6 +27,7 @@ namespace CAT_2015.Pages
                 // Make sure there is something in the textboxes..
                 if (textBoxUsername.Text.Length >= 1 && textBoxPassword.Text.Length >= 1)
                 {
+                    textBoxUsername.Text.Replace(@"\'", "");
                     // If the password is correct for the user (if the user exists)..
                     if (CAT_2015.AppCode.Database.AuthenticateUser(
                     textBoxUsername.Text.ToUpper(),

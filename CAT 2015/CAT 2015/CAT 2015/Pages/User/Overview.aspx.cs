@@ -62,7 +62,7 @@ namespace CAT_2015.Pages.User
                         tableAchievements.Controls.Add(row);
 
                         // Then set the achievement element to display the current achievement
-                        achievementElement.SetAchievement(a, true, currentUser);
+                        achievementElement.SetAchievement(a, true, false, currentUser);
                     }
 
                     // Finally, get the most recent achievements' IDs
@@ -90,7 +90,7 @@ namespace CAT_2015.Pages.User
                                     cell.Controls.Add(achievementElement);
                                     row.Controls.Add(cell);
                                     tableRecentAchievements.Controls.Add(row);
-                                    achievementElement.SetAchievement(a, true, currentUser);
+                                    achievementElement.SetAchievement(a, true, false, currentUser);
                                 }
                             }
                         }

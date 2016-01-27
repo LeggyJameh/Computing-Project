@@ -16,6 +16,7 @@ namespace CAT_2015.Pages.User.Controls
 
         public void setPercent(int percentage)
         {
+            if (percentage >= 0 && percentage <= 100)
             part1.Width = Unit.Percentage(percentage);
             part2.Width = Unit.Percentage(100 - percentage);
         }
